@@ -1,0 +1,75 @@
+﻿
+
+
+@model Group_work.Models.SignUpViewModel
+@{
+    ViewBag.Title = "Sign Up";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="split-container">
+    <!-- Left Side (Image) -->
+    <div class="left-side">
+        <div class="image-container">
+            <img src="~/Content/Images/image1.png" alt="Expense Tracker" />
+        </div>
+    </div>
+
+    <!-- Right Side (Form) -->
+    <div class="right-side">
+        <div class="welcome-text">
+            <h1 class="titre">Sign Up to eXpense Tracker</h1>
+        </div>
+
+        <div class="form-container">
+
+
+
+            @using (Html.BeginForm("SignUp", "Home", FormMethod.Post, new { @class = "signup-form" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", placeholder = "Enter your names" })
+                    @Html.ValidationMessageFor(m => m.FullName)
+                </div>
+
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Phone" })
+                    @Html.ValidationMessageFor(m => m.Phone)
+                </div>
+
+                <div class="form-group">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+
+                <div class="form-group">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                </div>
+
+                <button type="submit" class="btn-signup">Create account</button>
+            }
+
+            <div class="login-link">
+                Already have an account? @Html.ActionLink("Login", "Login")
+            </div>
+
+            <div class="social-login">
+                <div class="divider">or continue with</div>
+                <button class="btn-google">
+                    <i class="fab fa-google"></i> Google
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
